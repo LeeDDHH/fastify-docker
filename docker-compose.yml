@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  myapp:
+    container_name: ts-fastify-docker
+    # restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      args:
+        - PORT=3000
+    ports:
+      - 3000:3000
+    # env_file:
+    #   - .env
+    volumes:
+      # プロジェクト内のnode_modulesを除いたすべてのファイルとディレクトリの変更をコンテナ側にマウントする
+      # 1. docker側のコンテナでホスト側のファイルシステムの変更を検知できるようにマウントする
+      - ./:/usr/src/app
+      # 2. ホスト側のnode-modulesがコンテナ側にマウントされることを防止する
+      - exclude:/usr/src/app/node_modules/
+volumes:
+  exclude:
