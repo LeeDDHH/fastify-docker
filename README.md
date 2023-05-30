@@ -3,9 +3,7 @@
 - [x] ビルド
 - [x] 実行
 - [x] ホットリロード
-- [ ] デバッグ
-
-- 新しいパッケージをインストールしたり、削除したりするときはイメージを再ビルドする
+- [x] デバッグ
 
 ## バージョン
 
@@ -17,6 +15,14 @@
 | docker-compose | 2.17.3  |
 |    fastify     | 4.17.0  |
 |   typescript   |  5.0.4  |
+
+## 説明
+
+- デバッグ用にポート番号を揃える必要がある箇所
+  - `.vscode/launch.json` に指定する `port` 番号
+  - `package.json` の `start:dev` に指定する `--inspect=0.0.0.0:ポート番号` のポート番号
+  - `docker-compose.yml` に指定する `ports` のポート番号
+- 新しいパッケージをインストールしたり、削除したりするときはイメージを再ビルドする
 
 ## 参考
 
@@ -33,3 +39,4 @@
 ### debug inspector
 
 - [Debugging Node.js + Typescript Running inside Docker Containers with Hot Reload](https://www.youtube.com/watch?v=1WUoITRINf0)
+- [flolu/docker-typescript-debug: 🐞 Example for Debugging Node.js + Typescript Running inside Docker Containers with Hot Reload](https://github.com/flolu/docker-typescript-debug)
