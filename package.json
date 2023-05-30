@@ -2,6 +2,9 @@
   "name": "fastify-docker",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "build:prod": "tsc",
     "build:dev": "tsc -p tsconfig.dev.json",
