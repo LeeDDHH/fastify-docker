@@ -25,5 +25,18 @@
     "nodemon": "^2.0.22",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": "ts",
+    "ignore": [
+      ".git",
+      "node_modules/**/node_modules"
+    ],
+    "execMap": {
+      "ts": "node --require ts-node/register"
+    }
   }
 }
