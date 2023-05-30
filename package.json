@@ -9,7 +9,7 @@
     "build:prod": "tsc",
     "build:dev": "tsc -p tsconfig.dev.json",
     "start:prod": "node ./dist/index.js",
-    "start:dev": "nodemon ./src/index.ts",
+    "start:dev": "nodemon --signal SIGINT --inspect=0.0.0.0:9229 --nolazy ./src/index.ts",
     "run:prod": "npm run build:prod && npm run start:prod",
     "run:dev": "npm run build:dev && npm run start:dev"
   },
