@@ -1,4 +1,4 @@
-import fastify from "fastify";
+import fastify, { FastifyRequest, FastifyReply } from "fastify";
 
 const logger = { logger: true };
 
@@ -6,7 +6,7 @@ const { ADDRESS = "localhost", PORT = "3000" } = process.env;
 
 const server = fastify(logger);
 
-server.get("/", async (request, reply) => {
+server.get("/", async (request: FastifyRequest, reply: FastifyReply) => {
   return { message: "Hello world!" };
 });
 
