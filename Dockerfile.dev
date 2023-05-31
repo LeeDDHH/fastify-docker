@@ -1,14 +1,22 @@
 FROM node:18
 
+ENV TZ=Asia/Tokyo
+
+# RUN apk --no-cache add tzdata && \
+#     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 ARG PORT
 
 WORKDIR /usr/src/app
 
 COPY package.json .
+COPY package-lock.json .
 
 RUN npm install && npm cache clean --force
 
 COPY . .
+
+RUN npm run prisma:generate
 
 EXPOSE ${PORT}
 

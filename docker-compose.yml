@@ -8,6 +8,8 @@ services:
       dockerfile: Dockerfile.dev
       args:
         - PORT=3000
+    depends_on:
+      - mydb
     ports:
       - 3000:3000
       - 9229:9229
@@ -19,5 +21,27 @@ services:
       - ./:/usr/src/app
       # 2. ホスト側のnode-modulesがコンテナ側にマウントされることを防止する
       - exclude:/usr/src/app/node_modules/
+
+  mydb:
+    image: mysql:5.7
+    platform: linux/x86_64 # M1 Macだとこれ設定しないとちゃんと動かない
+    container_name: mysqldb
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./db/dev:/docker-entrypoint-initdb.d
+      - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
+    environment:
+      MYSQL_DATABASE: mydb
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password # 任意のPWを設定する
+      MYSQL_ROOT_PASSWORD: root
+      TZ: Asia/Tokyo
+      # MYSQL_ROOT_PASSWORDは今回設定していないが必要に応じて設定する。
+      # .env の接続情報も編集すること
+    ports:
+      - "3306:3306"
+
 volumes:
   exclude:
