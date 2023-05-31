@@ -1,9 +1,11 @@
 import fastify, { FastifyRequest, FastifyReply } from "fastify";
+import { PrismaClient } from "@prisma/client";
 
 const logger = { logger: true };
 
 const { ADDRESS = "localhost", PORT = "3000" } = process.env;
 
+const prisma = new PrismaClient();
 const server = fastify(logger);
 
 server.get("/", async (request: FastifyRequest, reply: FastifyReply) => {
