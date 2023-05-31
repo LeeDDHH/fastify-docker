@@ -11,7 +11,8 @@
     "start:prod": "node ./dist/index.js",
     "start:dev": "nodemon --signal SIGINT --inspect=0.0.0.0:9229 --nolazy ./src/index.ts",
     "run:prod": "npm run build:prod && npm run start:prod",
-    "run:dev": "npm run build:dev && npm run start:dev"
+    "run:dev": "npm run build:dev && npm run start:dev",
+    "prisma:generate": "prisma generate"
   },
   "keywords": [],
   "author": "",
